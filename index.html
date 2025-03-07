@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Genius Academy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .nav-links a:hover {
+            background-color: #34495e;
+        }
+        .container {
+            width: 90%;
+            margin: 2rem auto;
+            background-color: white;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .feature-box {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .nav-links.show {
+            display: block;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                width: 100%;
+                text-align: left;
+            }
+            .hamburger {
+                display: block;
+            }
+            .container {
+                width: 95%;
+            }
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-notice" id="mobileNotice">
+        📱 For the best experience, please rotate your device to landscape mode.
+        <button class="notice-close" onclick="this.parentElement.style.display='none'">×</button>
+    </div>
+    <nav class="navbar">
+        <div class="logo">Engineering Genius Academy</div>
+        <button class="hamburger" id="hamburgerMenu">&#9776;</button>
+        <div class="nav-links" id="navLinks">
+            <div>
+                <a href="https://videolectures101.github.io/engineeringvideolectures/" target="_blank" class="link-button">VIDEO LECTURES</a>
+            </div>
+            <div>
+                <a href="https://testyourspeed.github.io/speedtest/" target="_blank">TEST YOUR SPEED</a>
+            </div>
+            <div>
+                <a href="https://downloadableresources.github.io/THELIST/" target="_blank">DOWNLOADABLE RESOURCES</a>
+            </div>
+            <a href="https://engineeringpremiumquiz.github.io/EngineeringPremiumQuiz/" target="_blank">PRACTICE QUESTIONS</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Welcome to Engineering Genius Academy</h1>
+        <p>Your comprehensive online engineering learning platform. Explore various engineering disciplines with expert-curated content.</p>
+        <div class="feature-grid">
+            <div class="feature-box">
+                <h2>Personalized Learning</h2>
+                <p>Tailored engineering learning paths for students of all levels.</p>
+            </div>
+            <div class="feature-box">
+                <h2>Expert Tutors</h2>
+                <p>Learn from experienced engineers and educators.</p>
+            </div>
+            <div class="feature-box">
+                <h2>Interactive Content</h2>
+                <p>Engaging video lectures, quizzes, and downloadable resources.</p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 Engineering Genius Academy. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selects = document.querySelectorAll('.dropdown-select');
+            selects.forEach(select => {
+                select.addEventListener('change', function(e) {
+                    const selectedTopic = e.target.value;
+                    const selectId = e.target.id;
+                    switch(selectId) {
+                        case 'videoLectures':
+                            console.log('Video Lecture selected:', selectedTopic);
+                            break;
+                        case 'speedTest':
+                            console.log('Speed Test selected:', selectedTopic);
+                            break;
+                        case 'resources':
+                            console.log('Resource selected:', selectedTopic);
+                            break;
+                    }
+                });
+            });
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const navLinks = document.getElementById('navLinks');
+            hamburgerMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>
