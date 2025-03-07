@@ -31,4 +31,37 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburgerMenu.addEventListener('click', function() {
         navLinks.classList.toggle('show');
     });
+
+    // Function to show "COMING SOON" popup
+    function showComingSoon(event) {
+        event.preventDefault(); // Prevent navigation
+        let popup = document.createElement("div");
+        popup.className = "popup-message";
+        popup.innerText = "COMING SOON";
+        document.body.appendChild(popup);
+
+        popup.style.position = "fixed";
+        popup.style.top = "50%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.background = "rgba(0, 0, 0, 0.8)";
+        popup.style.color = "white";
+        popup.style.padding = "15px 20px";
+        popup.style.borderRadius = "5px";
+        popup.style.fontSize = "1rem";
+        popup.style.zIndex = "1000";
+        popup.style.display = "block";
+
+        // Remove the popup after 2 seconds
+        setTimeout(() => {
+            popup.style.display = "none";
+            document.body.removeChild(popup);
+        }, 2000);
+    }
+
+    // Add event listener to "DOWNLOADABLE RESOURCES" tab
+    const disabledLink = document.querySelector('.disabled-link');
+    if (disabledLink) {
+        disabledLink.addEventListener('click', showComingSoon);
+    }
 });
