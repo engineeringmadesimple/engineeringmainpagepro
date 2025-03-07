@@ -207,25 +207,19 @@ body {
 .disabled-link {
     position: relative;
     cursor: not-allowed;
-    pointer-events: none;
     color: gray;
 }
 
-.disabled-link::after {
-    content: "COMING SOON";
-    position: absolute;
+.popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+    padding: 15px 20px;
     border-radius: 5px;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
+    font-size: 1rem;
+    z-index: 1000;
     display: none;
-}
-
-.disabled-link:hover::after {
-    display: block;
 }
