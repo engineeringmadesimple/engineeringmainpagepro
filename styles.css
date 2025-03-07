@@ -204,3 +204,28 @@ body {
         display: block;
     }
 }
+.disabled-link {
+    position: relative;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: gray;
+}
+
+.disabled-link::after {
+    content: "COMING SOON";
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    display: none;
+}
+
+.disabled-link:hover::after {
+    display: block;
+}
