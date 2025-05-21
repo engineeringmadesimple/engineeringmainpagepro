@@ -3,55 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Genius Academy</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Math Solver: 2x + 3 = 11</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .paper-container {
+            max-width: 600px;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .paper {
+            position: relative;
+            padding: 40px 30px;
+            background-image: repeating-linear-gradient(
+                white,
+                white 35px,
+                #e0e0e0 36px,
+                #e0e0e0 37px
+            );
+            background-size: 100% 37px;
+            background-attachment: local;
+            line-height: 37px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .problem {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+            position: relative;
+            padding-left: 40px;
+            min-height: 60px;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 20px;
+        }
+
+        .equation {
+            font-family: 'Kalam', cursive;
+            font-size: 22px;
+            margin: 5px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid transparent;
+        }
+
+        .explanation {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: #555;
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 2px solid #ff6b6b;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .solve-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Caveat', cursive;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .solve-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .solve-button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .paper {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                font-size: 24px;
+            }
+            
+            .problem {
+                font-size: 20px;
+            }
+            
+            .equation {
+                font-size: 18px;
+            }
+            
+            .explanation {
+                font-size: 17px;
+            }
+            
+            .step {
+                padding-left: 30px;
+                min-height: 50px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Kalam&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="mobile-notice" id="mobileNotice">
-        📱 For the best experience, please rotate your device to landscape mode.
-        <button class="notice-close" onclick="this.parentElement.style.display='none'">×</button>
-    </div>
-    <nav class="navbar">
-        <div class="logo">Engineering Genius Academy</div>
-        <button class="hamburger" id="hamburgerMenu">&#9776;</button>
-        <div class="nav-links" id="navLinks">
-            <div>
-                <a href="https://engineeringmadesimple.github.io/EngineeringVideoPortalPro/" target="_blank" class="link-button">VIDEO LECTURES</a>
+    <div class="paper-container">
+        <div class="paper">
+            <div class="header">Let's Solve This Equation!</div>
+            <div class="problem">2x + 3 = 11</div>
+            
+            <div class="step" id="step1">
+                <div class="step-number">1</div>
+                <div class="equation" id="equation1"></div>
+                <div class="explanation" id="explanation1"></div>
             </div>
-            <div>
-                <a href="https://engineeringmadesimple.github.io/EngineeringQuizSpeedTestPro/" target="_blank">TEST YOUR SPEED</a>
+            
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="equation" id="equation2"></div>
+                <div class="explanation" id="explanation2"></div>
             </div>
-            <div>
-                  <a href="#" class="disabled-link" onclick="showComingSoon(event)">DOWNLOADABLE RESOURCES</a>  
+            
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="equation" id="equation3"></div>
+                <div class="explanation" id="explanation3"></div>
             </div>
-            <a href="https://engineeringmadesimple.github.io/EngineeringQuizPracticePro/" target="_blank">PRACTICE QUESTIONS</a>
+            
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <div class="equation" id="equation4"></div>
+                <div class="explanation" id="explanation4"></div>
+            </div>
+            
+            <div class="step" id="step5">
+                <div class="step-number">5</div>
+                <div class="equation" id="equation5"></div>
+                <div class="explanation" id="explanation5"></div>
+            </div>
+            
+            <div class="button-container">
+                <button class="solve-button" id="solveButton">Show Me How!</button>
+            </div>
         </div>
-    </nav>
-
-    <div class="container">
-        <h1>Welcome to Engineering Genius Academy</h1>
-        <p>Your comprehensive online engineering learning platform. Explore various engineering disciplines with expert-curated content.</p>
-        
-        <div class="feature-grid">
-            <div class="feature-box">
-                <h2>Personalized Learning</h2>
-                <p>Tailored engineering learning paths for students of all levels.</p>
-            </div>
-            <div class="feature-box">
-                <h2>Expert Tutors</h2>
-                <p>Learn from experienced engineers and educators.</p>
-            </div>
-            <div class="feature-box">
-                <h2>Interactive Content</h2>
-                <p>Engaging video lectures, quizzes, and downloadable resources.</p>
-            </div>
-        </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Engineering Genius Academy. All Rights Reserved.</p>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const solveButton = document.getElementById('solveButton');
+            const steps = [
+                {
+                    equation: "2x + 3 = 11",
+                    explanation: "Our original equation"
+                },
+                {
+                    equation: "2x + 3 - 3 = 11 - 3",
+                    explanation: "Subtract 3 from both sides"
+                },
+                {
+                    equation: "2x = 8",
+                    explanation: "Simplify both sides"
+                },
+                {
+                    equation: "2x ÷ 2 = 8 ÷ 2",
+                    explanation: "Divide both sides by 2"
+                },
+                {
+                    equation: "x = 4",
+                    explanation: "Solution found! 🎉"
+                }
+            ];
 
-    <script src="scripts.js"></script>
+            solveButton.addEventListener('click', function() {
+                this.disabled = true;
+                this.textContent = "Solving...";
+                
+                // Reset all steps
+                document.querySelectorAll('.step').forEach(step => {
+                    step.classList.remove('visible');
+                    const equation = step.querySelector('.equation');
+                    const explanation = step.querySelector('.explanation');
+                    if (equation) equation.textContent = '';
+                    if (explanation) explanation.textContent = '';
+                });
+                
+                // Animate each step with delays
+                animateSteps();
+            });
+
+            function animateSteps() {
+                // Show all steps first (hidden)
+                steps.forEach((_, index) => {
+                    const step = document.getElementById(`step${index + 1}`);
+                    if (step) step.classList.add('visible');
+                });
+
+                // Then animate each step's content sequentially
+                let currentStep = 0;
+                const interval = setInterval(() => {
+                    if (currentStep >= steps.length) {
+                        clearInterval(interval);
+                        document.getElementById('solveButton').textContent = "Solved!";
+                        return;
+                    }
+
+                    const stepIndex = currentStep + 1;
+                    const equation = document.getElementById(`equation${stepIndex}`);
+                    const explanation = document.getElementById(`explanation${stepIndex}`);
+                    
+                    if (equation && explanation) {
+                        typeText(equation, steps[currentStep].equation, () => {
+                            typeText(explanation, steps[currentStep].explanation);
+                        });
+                    }
+                    
+                    currentStep++;
+                }, 2000); // 2 second delay between steps
+            }
+
+            function typeText(element, text, callback) {
+                let i = 0;
+                element.style.borderRight = "2px solid #333";
+                element.textContent = "";
+                
+                function typing() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typing, Math.random() * 60 + 30);
+                    } else {
+                        element.style.borderRight = "2px solid transparent";
+                        if (callback) callback();
+                    }
+                }
+                
+                typing();
+            }
+        });
+    </script>
 </body>
 </html>
